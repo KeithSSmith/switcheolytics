@@ -1,0 +1,4 @@
+./app*
+./venv*
+./.idea*
+output.log
