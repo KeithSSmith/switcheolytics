@@ -7,7 +7,6 @@ class SwitcheoGridChainStatistics extends Component {
   constructor(props){
     super(props);
     this.state = {
-      API: 'https://api.switcheolytics.tech',
       neoBlockheight: 2000000,
       switcheoBlockheight: 2000000,
       switcheoV2Trades: 0,
@@ -71,7 +70,7 @@ class SwitcheoGridChainStatistics extends Component {
 
   getNeoBlockheight = async () => {
     try {
-      const res = await axios.get(this.state.API + '/neo/blockheight');
+      const res = await axios.get(this.props.api + '/neo/blockheight');
       this.setState({neoBlockheight: res.data.neo_blockheight.toLocaleString()});
     } catch (e) {
       console.error(e);
@@ -80,7 +79,7 @@ class SwitcheoGridChainStatistics extends Component {
 
   getSwitcheoBlockheight = async () => {
     try {
-      const res = await axios.get(this.state.API + '/switcheo/ingested/blockheight');
+      const res = await axios.get(this.props.api + '/switcheo/ingested/blockheight');
       this.setState({switcheoBlockheight: res.data.switcheo_blockheight.toLocaleString()});
     } catch (e) {
       console.error(e);
@@ -89,7 +88,7 @@ class SwitcheoGridChainStatistics extends Component {
 
   getSwitcheoV2Trades = async () => {
     try {
-      const res = await axios.get(this.state.API + '/switcheo/ingested/fills');
+      const res = await axios.get(this.props.api + '/switcheo/ingested/fills');
       this.setState({switcheoV2Trades: res.data.switcheo_fee_height.toLocaleString()});
     } catch (e) {
       console.error(e);
@@ -98,7 +97,7 @@ class SwitcheoGridChainStatistics extends Component {
 
   getSwitcheoV2FeeCount = async () => {
     try {
-      const res = await axios.get(this.state.API + '/switcheo/fee/count');
+      const res = await axios.get(this.props.api + '/switcheo/fee/count');
       this.setState({switcheoV2FeeCount: res.data.january_epoch.SWTH.toLocaleString()});
     } catch (e) {
       console.error(e);

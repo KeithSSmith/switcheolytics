@@ -5,7 +5,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      switcheo: 'Hello Switcheo!'
+      switcheo: 'Hello Switcheo!',
+      API: process.env.REACT_APP_SWITCHEOLYTICS_API
     }
   }
 
@@ -13,10 +14,10 @@ class App extends Component {
     return (
       <Fragment>
         <SwitcheoHeader/>
-        <SwitcheoGridBurnStatistics/>
-        <SwitcheoReChart/>
-        <SwitcheoGridChainStatistics/>
-        <ContractBalance/>
+        <SwitcheoGridBurnStatistics api={this.state.API}/>
+        <SwitcheoReChart api={this.state.API}/>
+        <SwitcheoGridChainStatistics api={this.state.API}/>
+        <ContractBalance api={this.state.API}/>
       </Fragment>
     );
   }

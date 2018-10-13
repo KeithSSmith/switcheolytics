@@ -7,7 +7,6 @@ class SwitcheoGridStatistics extends Component {
   constructor(props){
     super(props);
     this.state = {
-      API: 'https://api.switcheolytics.tech',
       switcheoV2Fees: 0,
       switcheoV2FeeAmount: 0,
       switcheoV2FeeAmountWeek: 0,
@@ -69,7 +68,7 @@ class SwitcheoGridStatistics extends Component {
 
   getSwitcheoV2FeeAmount = async () => {
     try {
-      const res = await axios.get(this.state.API + '/switcheo/fee/amount');
+      const res = await axios.get(this.props.api + '/switcheo/fee/amount');
       const swthFixed8Total = res.data.january_epoch.SWTH / 100000000;
       const swthFixed8Week = res.data.week_epoch.SWTH / 100000000;
       const swthFixed8Month = res.data.thirty_epoch.SWTH / 100000000;
