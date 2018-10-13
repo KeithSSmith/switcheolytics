@@ -26,7 +26,6 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 
-const API = 'https://api.switcheolytics.tech/switcheo/balance';
 const styles = {
   division: {
     display: "flex",
@@ -64,6 +63,7 @@ class ContractBalance extends Component {
   constructor(props){
     super(props);
     this.state = {
+      API: this.props.api + '/switcheo/balance',
       network: 'main',
       address: '',
       isLoading: false,
@@ -88,7 +88,7 @@ class ContractBalance extends Component {
       } else {
         this.setState({addressError: false});
         this.setState({isLoading: true});
-        const res = await axios.get(API, {
+        const res = await axios.get(this.state.API, {
           params: {
             network: this.state.network,
             address: this.state.address,

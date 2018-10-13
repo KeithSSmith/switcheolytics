@@ -1,0 +1,13 @@
+{
+  "name": "switcheolytics",
+  "alias": "switcheolytics.tech",
+  "type": "npm",
+  "public": false,
+  "dotenv": true,
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": "auto"
+    }
+  }
+}

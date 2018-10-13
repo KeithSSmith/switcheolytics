@@ -28,7 +28,6 @@ class SwitcheoReChart extends Component {
     super(props);
     this.state = {
       showChart: false,
-      API: 'https://api.switcheolytics.tech',
       switcheoFeeAmount: 0
     };
   }
@@ -39,7 +38,7 @@ class SwitcheoReChart extends Component {
 
   getSwitcheoFeeAmount = async () => {
     try {
-      const res = await axios.get(this.state.API + '/switcheo/fee/amount/graph');
+      const res = await axios.get(this.props.api + '/switcheo/fee/amount/graph');
       this.setState({switcheoFeeAmount: res.data.SWTH});
       this.setState({showChart: true})
     } catch (e) {
