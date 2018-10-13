@@ -22,8 +22,6 @@ yarn-error.log*
 
 \.idea/
 
-src/Components/Layouts/
-
 src/Components/AxiosTest\.js
 
 src/Components/SwitcheoChart\.js
