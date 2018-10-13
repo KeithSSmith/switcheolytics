@@ -1,15 +1,13 @@
 {
-  "name": "switcheolytics-api",
-  "alias": "api.switcheolytics.tech",
-  "type": "docker",
+  "name": "switcheolytics",
+  "alias": "switcheolytics.tech",
+  "type": "npm",
   "public": false,
-  "env": {
-    "MONGODB_USER": "@mongodb-user",
-    "MONGODB_PASSWORD": "@mongodb-password",
-    "MONGODB_HOSTNAME": "@mongodb-hostname",
-    "MONGODB_PORT": "@mongodb-port",
-    "MONGODB_DB": "@mongodb-database",
-    "NEO_RPC_HOSTNAME": "@neo-rpc-hostname",
-    "NEO_RPC_PORT": "@neo-rpc-port"
+  "dotenv": true,
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": "auto"
+    }
   }
 }
