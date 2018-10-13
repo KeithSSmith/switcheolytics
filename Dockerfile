@@ -13,6 +13,7 @@ RUN pip wheel --wheel-dir=/root/flask-wheel flask
 RUN pip wheel --wheel-dir=/root/flask-cors-wheel flask-cors
 
 FROM jfloff/alpine-python:3.6-slim AS small
+COPY gunicorn.conf /app/gunicorn.conf
 COPY --from=build /app/flask_modules ./
 COPY --from=build /root/blockchain-etl-wheel /root/blockchain-etl-wheel
 COPY --from=build /root/flask-wheel /root/flask-wheel
@@ -25,4 +26,4 @@ RUN apk add --no-cache --update openssl-dev && \
     python -m pip install gunicorn && \
     rm -rf /root/blockchain-etl-wheel /root/flask-wheel /root/flask-cors-wheel /root/z3-wheel
 EXPOSE 8080
-CMD ["gunicorn", "--workers=10", "--bind=0.0.0.0:8080", "app.wsgi:app"]
+CMD ["gunicorn", "--config", "/app/gunicorn.conf", "app.wsgi:app"]

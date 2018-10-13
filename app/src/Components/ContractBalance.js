@@ -138,7 +138,7 @@ class ContractBalance extends Component {
 
   renderTable() {
     if (this.state.showTable) {
-      return <Table className={styles.table}>
+      return <Table>
                 <TableHead>
                   <TableRow style={styles.row}>
                     <CustomTableCell>Contract Version</CustomTableCell>
@@ -151,15 +151,13 @@ class ContractBalance extends Component {
                   {Object.keys(this.state.balanceJson['NEO']).map(rowKey => {
                     return (
                       <TableRow key={'NEO_' + rowKey}>
-                        <CustomTableCell component="th" scope="row">
-                          {versions[rowKey]}
-                        </CustomTableCell>
+                        <CustomTableCell component="th" scope="row">{versions[rowKey]}</CustomTableCell>
                         <CustomTableCell>{this.transformJson(this.state.balanceJson['NEO'][rowKey]['confirmed'])}</CustomTableCell>
                         <CustomTableCell>{this.transformConfirmingJson(this.state.balanceJson['NEO'][rowKey]['confirming'])}</CustomTableCell>
                         <CustomTableCell>{this.transformJson(this.state.balanceJson['NEO'][rowKey]['locked'])}</CustomTableCell>
                       </TableRow>
                     );
-                  })};
+                  })}
                 </TableBody>
               </Table>
     }
@@ -257,12 +255,10 @@ class ContractBalance extends Component {
                   style={styles.button}
                   onClick={(event) => this.getBalance(event)}
                 >
-                  { this.renderButton() }
+                  {this.renderButton()}
                 </Button>
               </div>
-              <div style={styles.division}>
-                { this.renderTable() }
-              </div>
+              <div style={styles.division}>{this.renderTable()}</div>
             </Paper>
           </Grid>
         </Grid>

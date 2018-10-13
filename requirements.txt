@@ -1,4 +1,4 @@
-blockchain-etl==0.0.2
+blockchain-etl==0.0.5
 Flask==1.0.2
 Flask-Cors==3.0.6
 gunicorn==19.9.0

@@ -2,6 +2,7 @@
 import json
 import time
 import datetime
+import os
 from datetime import timezone
 from flask import Flask, jsonify, make_response, send_from_directory, request
 from flask_cors import CORS, cross_origin
@@ -18,15 +19,25 @@ url_dict = {
     'test': 'https://test-api.switcheo.network',
 }
 
-mongodb_protocol = ''
-mongodb_user = ''
-mongodb_password = ''
-mongodb_hostname = ''
-mongodb_port = ''
-ssc = SwitcheoSmartContract(rpc_hostname='', rpc_port='', rpc_tls=False,
-                            mongodb_protocol=mongodb_protocol, mongodb_user=mongodb_user,
-                            mongodb_password=mongodb_password, mongodb_hostname=mongodb_hostname,
-                            mongodb_port=mongodb_port)
+rpc_hostname = os.environ['NEO_RPC_HOSTNAME']
+rpc_port = os.environ['NEO_RPC_PORT']
+rpc_tls = False
+mongodb_protocol = 'mongodb'
+mongodb_user = os.environ['MONGODB_USER']
+mongodb_password = os.environ['MONGODB_PASSWORD']
+mongodb_hostname = os.environ['MONGODB_HOSTNAME']
+mongodb_port = os.environ['MONGODB_PORT']
+mongodb_db = os.environ['MONGODB_DB']
+
+ssc = SwitcheoSmartContract(rpc_hostname=rpc_hostname,
+                            rpc_port=rpc_port,
+                            rpc_tls=rpc_tls,
+                            mongodb_protocol=mongodb_protocol,
+                            mongodb_user=mongodb_user,
+                            mongodb_password=mongodb_password,
+                            mongodb_hostname=mongodb_hostname,
+                            mongodb_port=mongodb_port,
+                            mongodb_db=mongodb_db)
 
 @app.errorhandler(404)
 @cross_origin()
