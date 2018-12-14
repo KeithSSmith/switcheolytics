@@ -18,7 +18,7 @@ class App extends Component {
         <SwitcheoReChart api={this.state.API}/>
         <SwitcheoGridChainStatistics api={this.state.API}/>
         <ContractBalance api={this.state.API}/>
-        <SwitcheoTable api={this.state.API}/>
+        {/*<SwitcheoTable api={this.state.API}/>*/}
       </Fragment>
     );
   }
