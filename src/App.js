@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { ContractBalance, SwitcheoHeader, SwitcheoGridBurnStatistics, SwitcheoGridChainStatistics, SwitcheoReChart, SwitcheoTable } from './Components'
+import { ContractBalance, SwitcheoHeader, SwitcheoGridBurnStatistics, SwitcheoGridChainStatistics, SwitcheoReChart } from './Components'
 
 class App extends Component {
   constructor(){
