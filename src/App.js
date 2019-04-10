@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { ContractBalance, SwitcheoHeader, SwitcheoGridBurnStatistics, SwitcheoGridChainStatistics, SwitcheoReChart, SwitcheoTable } from './Components'
+import { ContractBalance, SwitcheoHeader, SwitcheoGridBurnStatistics, SwitcheoGridChainStatistics, SwitcheoReChart } from './Components'
 
 class App extends Component {
   constructor(){
@@ -18,7 +18,7 @@ class App extends Component {
         <SwitcheoReChart api={this.state.API}/>
         <SwitcheoGridChainStatistics api={this.state.API}/>
         <ContractBalance api={this.state.API}/>
-        <SwitcheoTable api={this.state.API}/>
+        {/*<SwitcheoTable api={this.state.API}/>*/}
       </Fragment>
     );
   }
