@@ -102,7 +102,7 @@ class SwitcheoGridStatistics extends Component {
             <Grid key={5} item xs={12}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyBig}>
-                  SWTH Total Burned:
+                  Total Switcheo Burned:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyBigNumber}>
                   {this.state.switcheoFeeAmount}
@@ -112,7 +112,7 @@ class SwitcheoGridStatistics extends Component {
             <Grid key={6} item xs={4}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
-                  Past Week Burned:
+                  Burned Last 7 Days:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
                   {this.state.switcheoFeeAmountWeek}
@@ -122,7 +122,7 @@ class SwitcheoGridStatistics extends Component {
             <Grid key={7} item xs={4}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
-                  Past Month Burned:
+                  Burned Last 30 Days:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
                   {this.state.switcheoFeeAmountMonth}
@@ -132,7 +132,7 @@ class SwitcheoGridStatistics extends Component {
             <Grid key={8} item xs={4}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
-                  Past Quarter Burned:
+                  Burned Last 90 Days:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
                   {this.state.switcheoFeeAmountQuarter}
@@ -142,7 +142,7 @@ class SwitcheoGridStatistics extends Component {
             <Grid key={9} item xs={4}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
-                  SWTH (V1) Burned:
+                  SWH (V1) Burned:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
                   {this.state.switcheoV1FeeAmount}
