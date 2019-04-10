@@ -8,10 +8,14 @@ class SwitcheoGridStatistics extends Component {
     super(props);
     this.state = {
       switcheoV2Fees: 0,
+      switcheoFeeAmount: 0,
+      switcheoFeeAmountWeek: 0,
+      switcheoFeeAmountMonth: 0,
+      switcheoFeeAmountQuarter: 0,
+      switcheoBurnAddressFeeAmount: 0,
+      switcheoV1FeeAmount: 0,
       switcheoV2FeeAmount: 0,
-      switcheoV2FeeAmountWeek: 0,
-      switcheoV2FeeAmountMonth: 0,
-      switcheoV2FeeAmountQuarter: 0,
+      switcheoV3FeeAmount: 0,
       styles: {
         division: {
           display: "flex",
@@ -59,24 +63,32 @@ class SwitcheoGridStatistics extends Component {
   }
 
   componentWillMount() {
-    this.getSwitcheoV2FeeAmount();
+    this.getSwitcheoFeeAmount();
   }
 
   componentDidMount() {
-    setInterval(this.getSwitcheoV2FeeAmount, 55000);
+    setInterval(this.getSwitcheoFeeAmount, 55000);
   }
 
-  getSwitcheoV2FeeAmount = async () => {
+  getSwitcheoFeeAmount = async () => {
     try {
-      const res = await axios.get(this.props.api + '/switcheo/fee/amount');
-      const swthFixed8Total = res.data.january_epoch.SWTH / 100000000;
-      const swthFixed8Week = res.data.week_epoch.SWTH / 100000000;
-      const swthFixed8Month = res.data.thirty_epoch.SWTH / 100000000;
-      const swthFixed8Quarter = res.data.ninety_epoch.SWTH / 100000000;
-      this.setState({switcheoV2FeeAmount: swthFixed8Total.toLocaleString()});
-      this.setState({switcheoV2FeeAmountWeek: swthFixed8Week.toLocaleString()});
-      this.setState({switcheoV2FeeAmountMonth: swthFixed8Month.toLocaleString()});
-      this.setState({switcheoV2FeeAmountQuarter: swthFixed8Quarter.toLocaleString()});
+      const res = await axios.get(this.props.api + '/switcheo/burnt');
+      const swthFixed8Total = res.data.all_burnt.all_epoch / 100000000;
+      const swthFixed8Week = res.data.all_burnt.week_epoch / 100000000;
+      const swthFixed8Month = res.data.all_burnt.thirty_epoch / 100000000;
+      const swthFixed8Quarter = res.data.all_burnt.ninety_epoch / 100000000;
+      const swthBurnAddressFixed8Total = res.data.burn_address / 100000000;
+      const swthV1Fixed8Total = res.data.V1 / 100000000;
+      const swthV2Fixed8Total = res.data.V2.all_epoch / 100000000;
+      const swthV3Fixed8Total = res.data.V3.all_epoch / 100000000;
+      this.setState({switcheoFeeAmount: Math.round(swthFixed8Total).toLocaleString()});
+      this.setState({switcheoFeeAmountWeek: Math.round(swthFixed8Week).toLocaleString()});
+      this.setState({switcheoFeeAmountMonth: Math.round(swthFixed8Month).toLocaleString()});
+      this.setState({switcheoFeeAmountQuarter: Math.round(swthFixed8Quarter).toLocaleString()});
+      this.setState({switcheoBurnAddressFeeAmount: Math.round(swthBurnAddressFixed8Total).toLocaleString()});
+      this.setState({switcheoV1FeeAmount: Math.round(swthV1Fixed8Total).toLocaleString()});
+      this.setState({switcheoV2FeeAmount: Math.round(swthV2Fixed8Total).toLocaleString()});
+      this.setState({switcheoV3FeeAmount: Math.round(swthV3Fixed8Total).toLocaleString()});
     } catch (e) {
       console.error(e);
     }
@@ -87,13 +99,23 @@ class SwitcheoGridStatistics extends Component {
       <Grid container justify="center" spacing={16}>
         <Grid item sm={6}>
           <Grid container justify="center" spacing={16}>
+            <Grid key={5} item xs={12}>
+              <Paper style={this.state.styles.paperStats}>
+                <Typography align="center" style={this.state.styles.typographyBig}>
+                  SWTH Total Burned:
+                </Typography>
+                <Typography align="center" style={this.state.styles.typographyBigNumber}>
+                  {this.state.switcheoFeeAmount}
+                </Typography>
+              </Paper>
+            </Grid>
             <Grid key={6} item xs={4}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
                   Past Week Burned:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
-                  {this.state.switcheoV2FeeAmountWeek}
+                  {this.state.switcheoFeeAmountWeek}
                 </Typography>
               </Paper>
             </Grid>
@@ -103,7 +125,7 @@ class SwitcheoGridStatistics extends Component {
                   Past Month Burned:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
-                  {this.state.switcheoV2FeeAmountMonth}
+                  {this.state.switcheoFeeAmountMonth}
                 </Typography>
               </Paper>
             </Grid>
@@ -113,17 +135,37 @@ class SwitcheoGridStatistics extends Component {
                   Past Quarter Burned:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
-                  {this.state.switcheoV2FeeAmountQuarter}
+                  {this.state.switcheoFeeAmountQuarter}
                 </Typography>
               </Paper>
             </Grid>
-            <Grid key={5} item xs={12}>
+            <Grid key={9} item xs={4}>
               <Paper style={this.state.styles.paperStats}>
-                <Typography align="center" style={this.state.styles.typographyBig}>
-                  SWTH (v2) Burned:
+                <Typography align="center" style={this.state.styles.typographyMain}>
+                  SWTH (V1) Burned:
                 </Typography>
-                <Typography align="center" style={this.state.styles.typographyBigNumber}>
+                <Typography align="center" style={this.state.styles.typographyNumber}>
+                  {this.state.switcheoV1FeeAmount}
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid key={10} item xs={4}>
+              <Paper style={this.state.styles.paperStats}>
+                <Typography align="center" style={this.state.styles.typographyMain}>
+                  SWTH (V2) Burned:
+                </Typography>
+                <Typography align="center" style={this.state.styles.typographyNumber}>
                   {this.state.switcheoV2FeeAmount}
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid key={11} item xs={4}>
+              <Paper style={this.state.styles.paperStats}>
+                <Typography align="center" style={this.state.styles.typographyMain}>
+                  SWTH (V3) Burned:
+                </Typography>
+                <Typography align="center" style={this.state.styles.typographyNumber}>
+                  {this.state.switcheoV3FeeAmount}
                 </Typography>
               </Paper>
             </Grid>
