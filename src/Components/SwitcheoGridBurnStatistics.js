@@ -139,7 +139,7 @@ class SwitcheoGridStatistics extends Component {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid key={9} item xs={4}>
+            <Grid key={9} item xs={3}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
                   SWH (V1) Burned:
@@ -149,7 +149,7 @@ class SwitcheoGridStatistics extends Component {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid key={10} item xs={4}>
+            <Grid key={10} item xs={3}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
                   SWTH (V2) Burned:
@@ -159,13 +159,23 @@ class SwitcheoGridStatistics extends Component {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid key={11} item xs={4}>
+            <Grid key={11} item xs={3}>
               <Paper style={this.state.styles.paperStats}>
                 <Typography align="center" style={this.state.styles.typographyMain}>
                   SWTH (V3) Burned:
                 </Typography>
                 <Typography align="center" style={this.state.styles.typographyNumber}>
                   {this.state.switcheoV3FeeAmount}
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid key={12} item xs={3}>
+              <Paper style={this.state.styles.paperStats}>
+                <Typography align="center" style={this.state.styles.typographyMain}>
+                  SWTH (Manual) Burned:
+                </Typography>
+                <Typography align="center" style={this.state.styles.typographyNumber}>
+                  {this.state.switcheoBurnAddressFeeAmount}
                 </Typography>
               </Paper>
             </Grid>
